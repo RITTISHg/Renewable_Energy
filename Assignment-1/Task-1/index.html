@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>India Renewable Energy Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <h1 class="header__title">India Renewable Energy Dashboard: Global Comparison & Analysis</h1>
+            <p class="header__subtitle">Comprehensive analysis of India's renewable energy progress compared to global leaders</p>
+            
+            <!-- Key Statistics Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-card__value">190.57 GW</div>
+                    <div class="stat-card__label">Total RE Capacity</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card__value">#4</div>
+                    <div class="stat-card__label">Global Rank</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card__value">134.6%</div>
+                    <div class="stat-card__label">Growth Rate</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card__value">500 GW</div>
+                    <div class="stat-card__label">2030 Target</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Tab Navigation -->
+            <nav class="tab-nav">
+                <button class="tab-btn tab-btn--active" data-tab="overview">India Overview</button>
+                <button class="tab-btn" data-tab="global">Global Comparison</button>
+                <button class="tab-btn" data-tab="technology">Technology Analysis</button>
+                <button class="tab-btn" data-tab="projections">Future Projections</button>
+            </nav>
+
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <!-- India Overview Tab -->
+                <div class="tab-panel tab-panel--active" id="overview">
+                    <div class="dashboard-grid">
+                        <!-- Growth Chart -->
+                        <div class="chart-container">
+                            <h3>India's Renewable Energy Growth (2014-2024)</h3>
+                            <div class="chart-wrapper" style="position: relative; height: 400px;">
+                                <canvas id="growthChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Energy Mix Pie Chart -->
+                        <div class="chart-container">
+                            <h3>Current Energy Mix (2023-24)</h3>
+                            <div class="chart-wrapper" style="position: relative; height: 400px;">
+                                <canvas id="energyMixChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Key Metrics Table -->
+                        <div class="metrics-table">
+                            <h3>Growth Rates by Technology</h3>
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Technology</th>
+                                        <th>2014-15 (GW)</th>
+                                        <th>2023-24 (GW)</th>
+                                        <th>Growth Rate</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Solar</td>
+                                        <td>3.99</td>
+                                        <td>81.81</td>
+                                        <td class="status status--success">+1950%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Wind</td>
+                                        <td>23.44</td>
+                                        <td>45.89</td>
+                                        <td class="status status--success">+96%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Biomass</td>
+                                        <td>8.55</td>
+                                        <td>10.95</td>
+                                        <td class="status status--info">+28%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Small Hydro</td>
+                                        <td>4.06</td>
+                                        <td>5.00</td>
+                                        <td class="status status--info">+23%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- State-wise Performance -->
+                        <div class="state-performance">
+                            <h3>Top 5 States by RE Capacity</h3>
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>State</th>
+                                        <th>Capacity (GW)</th>
+                                        <th>Share (%)</th>
+                                        <th>Generation (TWh)</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="stateTableBody">
+                                    <!-- Populated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Global Comparison Tab -->
+                <div class="tab-panel" id="global">
+                    <div class="dashboard-grid">
+                        <!-- Global Capacity Comparison -->
+                        <div class="chart-container">
+                            <h3>Top 10 Countries by RE Capacity</h3>
+                            <div class="chart-wrapper" style="position: relative; height: 400px;">
+                                <canvas id="globalComparisonChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Per Capita Comparison -->
+                        <div class="chart-container">
+                            <h3>Per Capita Renewable Capacity (W/person)</h3>
+                            <div class="chart-wrapper" style="position: relative; height: 400px;">
+                                <canvas id="perCapitaChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Comparison Table -->
+                        <div class="comparison-table">
+                            <h3>India vs Global Leaders</h3>
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Country</th>
+                                        <th>Total RE (GW)</th>
+                                        <th>Solar (GW)</th>
+                                        <th>Wind (GW)</th>
+                                        <th>Per Capita (W)</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="comparisonTableBody">
+                                    <!-- Populated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technology Analysis Tab -->
+                <div class="tab-panel" id="technology">
+                    <div class="controls-section">
+                        <h3>Technology Filters</h3>
+                        <div class="tech-filters">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="solarFilter" checked>
+                                <span>Solar</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="windFilter" checked>
+                                <span>Wind</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="bioFilter" checked>
+                                <span>Biomass</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="hydroFilter" checked>
+                                <span>Small Hydro</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-grid">
+                        <!-- Technology Trends -->
+                        <div class="chart-container chart-container--full">
+                            <h3>Technology-wise Capacity Trends</h3>
+                            <div class="chart-wrapper" style="position: relative; height: 400px;">
+                                <canvas id="technologyTrendsChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Technology Growth Rates -->
+                        <div class="chart-container">
+                            <h3>Annual Growth Rates by Technology</h3>
+                            <div class="chart-wrapper" style="position: relative; height: 400px;">
+                                <canvas id="growthRatesChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Future Projections Tab -->
+                <div class="tab-panel" id="projections">
+                    <div class="dashboard-grid">
+                        <!-- 2030 Target Progress -->
+                        <div class="chart-container">
+                            <h3>Progress Towards 2030 Target</h3>
+                            <div class="progress-container">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" data-progress="38.11"></div>
+                                </div>
+                                <div class="progress-stats">
+                                    <div class="progress-stat">
+                                        <span class="progress-value">190.57 GW</span>
+                                        <span class="progress-label">Current (2024)</span>
+                                    </div>
+                                    <div class="progress-stat">
+                                        <span class="progress-value">500 GW</span>
+                                        <span class="progress-label">Target (2030)</span>
+                                    </div>
+                                    <div class="progress-stat">
+                                        <span class="progress-value">51.57 GW</span>
+                                        <span class="progress-label">Required Annually</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Scenario Analysis -->
+                        <div class="chart-container">
+                            <h3>Scenario Analysis to 2030</h3>
+                            <div class="chart-wrapper" style="position: relative; height: 400px;">
+                                <canvas id="scenarioChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Policy Impact -->
+                        <div class="policy-impact">
+                            <h3>Key Policy Milestones</h3>
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-year">2015</div>
+                                    <div class="timeline-content">
+                                        <h4>National Solar Mission Launch</h4>
+                                        <p>Target of 100 GW solar capacity by 2022</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-year">2021</div>
+                                    <div class="timeline-content">
+                                        <h4>COP26 Commitment</h4>
+                                        <p>500 GW renewable capacity by 2030</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-year">2023</div>
+                                    <div class="timeline-content">
+                                        <h4>Green Hydrogen Mission</h4>
+                                        <p>₹19,744 crore investment approved</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Export Section -->
+            <div class="export-section">
+                <button class="btn btn--primary" id="exportBtn">
+                    <span>📊</span>
+                    Export Data as CSV
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
