@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>India Energy Statistics Dashboard 2025</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="dashboard-header">
+            <h1>India Energy Statistics Dashboard 2025</h1>
+            <p class="subtitle">Based on Official Government Data - MoSPI & MNRE</p>
+        </header>
+
+        <div class="state-selector">
+            <div class="state-select-container">
+                <label for="state1" class="form-label">State 1</label>
+                <select id="state1" class="form-control state-dropdown">
+                    <option value="">Select State</option>
+                </select>
+            </div>
+            <div class="vs-divider">VS</div>
+            <div class="state-select-container">
+                <label for="state2" class="form-label">State 2</label>
+                <select id="state2" class="form-control state-dropdown">
+                    <option value="">Select State</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="comparison-container">
+            <div class="state-panel" id="state1-panel">
+                <div class="state-title">
+                    <h2 id="state1-name">Select a State</h2>
+                </div>
+                <div class="energy-data" id="state1-data">
+                    <div class="no-data">Please select a state to view energy data</div>
+                </div>
+            </div>
+
+            <div class="state-panel" id="state2-panel">
+                <div class="state-title">
+                    <h2 id="state2-name">Select a State</h2>
+                </div>
+                <div class="energy-data" id="state2-data">
+                    <div class="no-data">Please select a state to view energy data</div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="dashboard-footer">
+            <p>Data Source: Energy Statistics India 2025 - Ministry of Statistics and Programme Implementation (MoSPI) & Ministry of New and Renewable Energy (MNRE)</p>
+            <p>© 2025 Government of India - Official Statistics</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
